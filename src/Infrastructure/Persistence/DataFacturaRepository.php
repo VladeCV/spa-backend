@@ -178,4 +178,28 @@ class DataFacturaRepository implements FacturaRepository
         ];
         return ['data' => $data, 'message' => 'Facturas obtenidas por ID de cliente', 'statusCode' => 200, 'success' => true];
     }
+
+    public function cambiarEstadoFactura($body): array
+    {
+        if (!isset($body['id_factura'])) {
+            return ['data' => [], 'message' => 'ID de factura no definido', 'statusCode' => 400, 'success' => false];
+        }
+        if (!isset($body['estado']['codigo']) || !isset($body['estado']['valor'])) {
+            return ['data' => [], 'message' => 'Estado de factura no definido', 'statusCode' => 400, 'success' => false];
+        }
+        $id_factura = $body['id_factura'];
+        $codigo = $body['estado']['codigo'];
+        $valor = $body['estado']['valor'];
+        $sql = "
+            UPDATE spa.factura 
+            SET estado_codigo = :estado_codigo, estado_valor = :estado_valor, f_pago = now()
+            WHERE id = :id_factura and activo = true
+        ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id_factura', $id_factura);
+        $stmt->bindParam(':estado_codigo', $codigo);
+        $stmt->bindParam(':estado_valor', $valor);
+        $stmt->execute();
+        return ['data' => [], 'message' => 'Estado de factura actualizado exitosamente', 'statusCode' => 200, 'success' => true];
+    }
 }

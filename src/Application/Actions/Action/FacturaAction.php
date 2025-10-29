@@ -53,27 +53,6 @@ class FacturaAction extends Action
         return $this->respondWithData($res['data'], $res['message'], $res['statusCode'], $res['success']);
     }
 
-    public function setDataPut(Request $request, Response $response, $args)
-    {
-        $this->request = $request;
-        $this->response = $response;
-        $this->args = $args;
-        $body = $request->getParsedBody();
-        $body['id_factura'] = $args['id'];
-        $res = $this->repository->setDataPut($body);
-        return $this->respondWithData($res['data'], $res['message'], $res['statusCode'], $res['success']);
-    }
-
-    public function setDelete(Request $request, Response $response, $args)
-    {
-        $this->request = $request;
-        $this->response = $response;
-        $this->args = $args;
-        $body['id_factura'] = $args['id'];
-        $res = $this->repository->setDelete($body);
-        return $this->respondWithData($res['data'], $res['message'], $res['statusCode'], $res['success']);
-    }
-
     public function getFacturaByClienteIdLista(Request $request, Response $response, $args)
     {
         $this->request = $request;
@@ -81,6 +60,16 @@ class FacturaAction extends Action
         $this->args = $args;
         $body['id_cliente'] = $args['id_cliente'];
         $res = $this->repository->getFacturaByClienteIdLista($body);
+        return $this->respondWithData($res['data'], $res['message'], $res['statusCode'], $res['success']);
+    }
+    public function cambiarEstadoFactura(Request $request, Response $response, $args)
+    {
+        $this->request = $request;
+        $this->response = $response;
+        $this->args = $args;
+        $body = $request->getParsedBody();
+        $body['id_factura'] = $args['id'];
+        $res = $this->repository->cambiarEstadoFactura($body);
         return $this->respondWithData($res['data'], $res['message'], $res['statusCode'], $res['success']);
     }
 }

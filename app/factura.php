@@ -10,7 +10,6 @@ return function (App $app) {
         $group->get('/{id}', FacturaAction::class . ':getDataId');
         $group->get('/cliente/{id_cliente}/lista', FacturaAction::class . ':getFacturaByClienteIdLista');
         $group->post('', FacturaAction::class . ':setDataSave');
-        $group->put('/{id}', FacturaAction::class . ':setDataPut');
-        $group->delete('/{id}', FacturaAction::class . ':setDelete');
+        $group->patch('/estado/{id}', FacturaAction::class . ':cambiarEstadoFactura');
     });
 };

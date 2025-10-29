@@ -12,4 +12,6 @@ interface FacturaRepository
     public function setDataSave($body): array;
 
     public function getFacturaByClienteIdLista($body): array;
+
+    public function cambiarEstadoFactura($body): array;
 }
