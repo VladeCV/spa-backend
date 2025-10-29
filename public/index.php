@@ -50,6 +50,9 @@ $routes($app);
 $routes = require __DIR__ . '/../app/cliente.php';
 $routes($app);
 
+$routes = require __DIR__ . '/../app/factura.php';
+$routes($app);
+
 /** @var SettingsInterface $settings */
 $settings = $container->get(SettingsInterface::class);
 

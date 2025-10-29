@@ -170,7 +170,7 @@ class DataClienteRepository implements ClienteRepository
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id_cliente', $body['id_cliente']);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$result) {
             return ['data' => [], 'message' => 'Cliente no encontrado', 'statusCode' => 404, 'success' => false];
