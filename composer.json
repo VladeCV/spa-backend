@@ -29,7 +29,7 @@
     "slim/psr7": "^1.5",
     "slim/slim": "^4.10",
     "ext-pdo": "*",
-    "ramsey/uuid": "^4.2"
+    "ramsey/uuid": "^4.9"
   },
   "require-dev": {
     "jangregor/phpstan-prophecy": "^1.0.0",
